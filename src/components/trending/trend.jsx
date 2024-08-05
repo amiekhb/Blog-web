@@ -2,17 +2,16 @@ import React from "react";
 
 const Trend = ({ img, tags, title }) => {
   return (
-    <div className="mt-32">
-      <p className=" text-xl font-bold mb-10">Trending</p>
-      <div className="grid grid-cols-4 gap-5 ">
-        <div
-          className={`h-[420px] rounded-xl bg-teal-500`}
-          style={{ backgroundImage: `url(${img})` }}
-        >
-          {/* <img src={img} alt="" /> */}
-          <div>{tags}</div>
-          <div>{title}</div>
+    <div
+      className={`h-[420px] rounded-xl bg-teal-500 flex flex-col gap-5 w-[380px] `}
+      style={{ backgroundImage: `url(${img})` }}
+    >
+      <div className="m-5 flex flex-col gap-5 justify-end h-full">
+        {" "}
+        <div className="bg-indigo-600 text-white w-[110px] justify-center rounded-lg h-8 flex items-center">
+          {tags}
         </div>
+        <div className="text-white font-semibold text-xl ">{title}</div>
       </div>
     </div>
   );

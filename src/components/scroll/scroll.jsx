@@ -1,6 +1,6 @@
 import React from "react";
 
-const Scroll = ({ tag, date }) => {
+const Scroll = ({ Tag, date }) => {
   return (
     <div className="relative">
       <img
@@ -10,7 +10,9 @@ const Scroll = ({ tag, date }) => {
       />
       <div className="h-[300px] w-2/4 m-4 rounded-xl bg-white absolute bottom-0 left-0 flex flex-col justify-evenly items-start ">
         {" "}
-        <div className="bg-indigo-600 text-white">{tag}</div>
+        <div className="bg-indigo-600 text-white w-[110px] justify-center rounded-lg h-8 flex items-center">
+          {Tag}
+        </div>
         <h1 className="font-semibold text-5xl ml-5">
           Grid system for better <br /> Design User Interface
         </h1>

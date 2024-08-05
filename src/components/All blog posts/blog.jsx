@@ -1,23 +1,14 @@
 import React from "react";
 
-const Blog = () => {
+const Blog = (zurag, category, headline, udur) => {
   return (
-    <div className="mt-32">
-      <p className="text-xl font-bold mb-10">All Blog Post </p>
-      <div className="flex justify-between">
-        <ul className="flex gap-5">
-          <li>All</li>
-          <li>Design</li>
-          <li>Travel</li>
-          <li>Fashion</li>
-          <li>Technology</li>
-          <li>Branding</li>
-        </ul>
-        <ul>
-          <li>View All</li>
-        </ul>
+    <div className="grid grid-cols-3 h-[600px]">
+      <div>
+        <img src={zurag} alt="" />
       </div>
-      <div className="grid grid-cols-3"></div>
+      <div>{category}</div>
+      <div>{headline}</div>
+      <div>{udur}</div>
     </div>
   );
 };

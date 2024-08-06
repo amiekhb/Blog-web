@@ -1,14 +1,20 @@
 import React from "react";
 
-const Blog = (zurag, category, headline, udur) => {
+const Blog = ({ zurag, category, headline, udur }) => {
   return (
-    <div className="grid grid-cols-3 h-[600px]">
-      <div>
-        <img src={zurag} alt="" />
+    <div className=" h-[600px] w-[400px]">
+      <div className="  border border-gray-600 rounded-lg justify-center">
+        {" "}
+        <div className=" gap-3 m-3 flex flex-col items-start">
+          {" "}
+          <img className="h-[300px] w-full rounded-lg" src={zurag} alt="" />
+          <div className="text-indigo-600 bg-gray-50 w-[110px] justify-center rounded-lg h-8 flex items-center">
+            {category}
+          </div>
+          <div className="text-black font-semibold text-xl">{headline}</div>
+          <div className="text-gray-500">{udur}</div>
+        </div>
       </div>
-      <div>{category}</div>
-      <div>{headline}</div>
-      <div>{udur}</div>
     </div>
   );
 };

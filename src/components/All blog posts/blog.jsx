@@ -7,7 +7,7 @@ const Blog = ({ zurag, category, headline, udur }) => {
         {" "}
         <div className=" gap-3 m-3 flex flex-col items-start">
           {" "}
-          <img className="h-[300px] w-full rounded-lg" src={zurag} alt="" />
+          <img className=" rounded-lg " src={zurag} alt="" />
           <div className="text-indigo-600 bg-gray-50 w-[110px] justify-center rounded-lg h-8 flex items-center">
             {category}
           </div>

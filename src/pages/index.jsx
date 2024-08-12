@@ -1,14 +1,15 @@
 import Image from "next/image";
 import { Inter } from "next/font/google";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Scroll from "@/components/scroll/scroll";
 import Trend from "@/components/trending/trend";
 import BLOG from "@/components/All blog posts";
+import { SearchContext } from "@/provider/search-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  const data = [{ Tag: "Technology", date: "August 20, 2022" }];
+  // const data = [{ Tag: "Technology", date: "August 20, 2022" }];
   // const [news, setNews] = useState([
   //   {
   //     img: "https://s3-alpha-sig.figma.com/img/e8eb/3bce/c766a697a30822ccba768b03c5125ead?Expires=1723420800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=UaeMflZthJbLWO4fYsZntkBYw9rNFb8XF0N4QTPygrA3NbQfKmVjyBT43L3NtwomjDqKhDlbJsWPGVzqtTk5s6DxBUnmxS2tPR0TDzyvSgvZ1fkL50fgU6mMH7T5EwrGRw6Dy0QfsT9WBJP4yOTbIJbhTsFYa0BICBUSoyNpC4Pip5ixKd3VSAFGx2lpcXFE7cSIb-jnp0Ll47nkLb-6uL42hJqR6VlnMbXyA-GNs~QJtijBPezcUQgBTP0JHXdvbLy~A-ivgcbi~pyD7fur5BETw0~rwRnhIvSMo1NH0kk1FUuZoq8O-HywzprAItNw-840kN~WPHoGZep-5Kv-Mg__",
@@ -35,26 +36,39 @@ export default function Home() {
   //     tags: "Technology",
   //   },
   // ]);
+  const { searchValue } = useContext(SearchContext);
   const [articles, setArticles] = useState([]);
+  const [page, setPage] = useState(1);
   const getArticleData = async () => {
     const response = await fetch("https://dev.to/api/articles?per_page=4");
     const data = await response.json();
-    setArticles(data);
-    // console.log("data", data)
+
+    setArticles((prevArticles) => {
+      console.log("prevArticles", prevArticles);
+      const newArticles = data.filter(
+        (article) =>
+          !prevArticles.some((prevArticle) => prevArticle.id === article.id)
+      );
+      return [...prevArticles, ...newArticles];
+    });
   };
+  console.log("hahshdsadasd", searchValue);
 
   useEffect(() => {
     getArticleData();
-  }, []);
+  }, [page]);
+  const handleLoadMore = () => {
+    setPage((prevPage) => prevPage + 1);
+  };
 
   console.log("articles", articles);
 
   return (
-    <main>
+    <main className="text-center">
       <div className="mx-60">
-        {data.map(({ headNews }) => (
-          <Scroll Tag={data.Tag} date={data.date} />
-        ))}
+        {/* {data.map(({ headNews }) => (
+          // <Scroll Tag={data.Tag} date={data.date} />
+        ))} */}
         <div className="mt-32 w-full">
           {" "}
           <p className=" text-xl font-bold mb-10 ">Trending</p>
@@ -72,9 +86,16 @@ export default function Home() {
           </div>
         </div>
         <div>
+          <h2>Хайлт: {searchValue}</h2>
           <BLOG />
         </div>
       </div>
+      <button
+        onClick={handleLoadMore}
+        className=" border rounded-md border-gray-500 bg-white text-gray-500 mb-20 "
+      >
+        <p className="m-2">Load More</p>
+      </button>
     </main>
   );
 }

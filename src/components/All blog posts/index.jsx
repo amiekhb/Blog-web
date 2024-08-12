@@ -1,6 +1,8 @@
 import React from "react";
 import Blog from "./blog";
 import { useEffect, useState } from "react";
+import Link from "next/link";
+
 // const medeenuud = [
 //   {
 //     zurag:
@@ -109,18 +111,17 @@ const BLOG = () => {
         {articles.map((article) => {
           console.log("article", article);
           return (
-            <Blog
-              zurag={article.cover_image}
-              category={article.type_of}
-              headline={article.title}
-              udur={article.readable_publish_date}
-            />
+            <Link href={`/blog/${article.id}`}>
+              <Blog
+                zurag={article.cover_image}
+                category={article.type_of}
+                headline={article.title}
+                udur={article.readable_publish_date}
+              />
+            </Link>
           );
         })}
       </div>
-      <button className=" border rounded-md border-gray-500 bg-white text-gray-500 mb-20 ">
-        <p className="m-2">Load More</p>
-      </button>
     </div>
   );
 };

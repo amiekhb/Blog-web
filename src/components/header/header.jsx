@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import Link from "next/link";
+import { SearchContext } from "@/provider/search-provider";
 
 // import { CiSearch } from "react-icons/ci";  <CiSearch />
 const Header = () => {
+  const { setSearchValue } = useContext(SearchContext);
+  const handleChange = (e) => {
+    setSearchValue(e.target.value);
+  };
   return (
     <div className="m-10 flex justify-between mx-60">
       {" "}
@@ -22,6 +27,7 @@ const Header = () => {
         className=" border border-stone-500 rounded-md"
         type="Search"
         placeholder="Search"
+        onChange={handleChange}
       />
     </div>
   );

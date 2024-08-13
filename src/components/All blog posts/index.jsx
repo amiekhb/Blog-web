@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import Blog from "./blog";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Loader from "../Loader";
+import { MyContext } from "@/pages/provider";
 
 // const medeenuud = [
 //   {
@@ -78,7 +80,8 @@ import Link from "next/link";
 //   },
 // ];
 const BLOG = () => {
-  const [articles, setArticles] = useState([]);
+  const [article, setArticles] = useState([]);
+
   const getArticleData = async () => {
     const response = await fetch("https://dev.to/api/articles?per_page=9");
     const data = await response.json();
@@ -90,7 +93,7 @@ const BLOG = () => {
     getArticleData();
   }, []);
 
-  console.log("articles", articles);
+  console.log("articles", article);
   return (
     <div className="mt-32 text-center ">
       <p className="text-xl font-bold mb-10">All Blog Post </p>
@@ -108,7 +111,7 @@ const BLOG = () => {
         </ul>
       </div>
       <div className="grid grid-cols-3 w-full ">
-        {articles.map((article) => {
+        {article.map((article) => {
           console.log("article", article);
           return (
             <Link href={`/blog/${article.id}`}>

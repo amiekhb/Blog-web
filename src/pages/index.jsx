@@ -1,10 +1,11 @@
 import Image from "next/image";
 import { Inter } from "next/font/google";
 import { useContext, useEffect, useState } from "react";
-import Scroll from "@/components/scroll/scroll";
-import Trend from "@/components/trending/trend";
+import Scroll from "@/components/scroll";
+import Trend from "@/components/trend";
 import BLOG from "@/components/All blog posts";
-import { SearchContext } from "@/provider/search-provider";
+import { MyContext } from "./provider";
+import Loader from "@/components/Loader";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -36,33 +37,20 @@ export default function Home() {
   //     tags: "Technology",
   //   },
   // ]);
-  const { searchValue } = useContext(SearchContext);
-  const [articles, setArticles] = useState([]);
-  const [page, setPage] = useState(1);
+  const [article, setArticles] = useState([]);
+
   const getArticleData = async () => {
     const response = await fetch("https://dev.to/api/articles?per_page=4");
     const data = await response.json();
-
-    setArticles((prevArticles) => {
-      console.log("prevArticles", prevArticles);
-      const newArticles = data.filter(
-        (article) =>
-          !prevArticles.some((prevArticle) => prevArticle.id === article.id)
-      );
-      return [...prevArticles, ...newArticles];
-    });
+    setArticles(data);
+    // console.log("data", data)
   };
-  console.log("hahshdsadasd", searchValue);
 
   useEffect(() => {
     getArticleData();
-  }, [page]);
-  const handleLoadMore = () => {
-    setPage((prevPage) => prevPage + 1);
-  };
+  }, []);
 
-  console.log("articles", articles);
-
+  const { searchValue, articles, isLoading } = useContext(MyContext);
   return (
     <main className="text-center">
       <div className="mx-60">
@@ -73,7 +61,22 @@ export default function Home() {
           {" "}
           <p className=" text-xl font-bold mb-10 ">Trending</p>
           <div className="flex m-auto justify-between">
-            {articles.map((article) => {
+            {isLoading ? (
+              <Loader />
+            ) : (
+              article.map((article) => {
+                console.log("article", article);
+                return (
+                  <Trend
+                    tags={article.type_of}
+                    img={article.cover_image}
+                    title={article.title}
+                  />
+                );
+              })
+            )}
+
+            {/* {articles.map((article) => {
               console.log("article", article);
               return (
                 <Trend
@@ -82,16 +85,17 @@ export default function Home() {
                   title={article.title}
                 />
               );
-            })}
+            })} */}
           </div>
         </div>
+
         <div>
           <h2>Хайлт: {searchValue}</h2>
           <BLOG />
         </div>
       </div>
       <button
-        onClick={handleLoadMore}
+        // onClick={handleLoadMore}
         className=" border rounded-md border-gray-500 bg-white text-gray-500 mb-20 "
       >
         <p className="m-2">Load More</p>

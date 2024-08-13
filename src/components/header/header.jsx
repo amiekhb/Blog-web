@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import Link from "next/link";
-import { SearchContext } from "@/provider/search-provider";
+import { MyContext } from "@/pages/provider";
 
 // import { CiSearch } from "react-icons/ci";  <CiSearch />
 const Header = () => {
-  const { setSearchValue } = useContext(SearchContext);
+  const { setSearchValue } = useContext(MyContext);
   const handleChange = (e) => {
     setSearchValue(e.target.value);
   };

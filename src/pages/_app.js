@@ -1,13 +1,13 @@
-import Layout from "@/components/layout/layout";
-import SearchProvider from "@/provider/search-provider";
 import "@/styles/globals.css";
+import MyProvider from "./provider";
+import Layout from "@/components/layout/layout";
 
 export default function App({ Component, pageProps }) {
   return (
-    <SearchProvider>
+    <MyProvider>
       <Layout>
         <Component {...pageProps} />
       </Layout>
-    </SearchProvider>
+    </MyProvider>
   );
 }

@@ -13,7 +13,7 @@ const MyProvider = ({ children }) => {
     try {
       setIsLoading(true);
       const response = await fetch(
-        `https://dev.to/api/artic?page=${page}&per_page=20`
+        `https://dev.to/api/artic?page=${page}&per_page=4`
       );
       const data = await response.json();
 
@@ -43,7 +43,12 @@ const MyProvider = ({ children }) => {
 
   return (
     <MyContext.Provider
-      value={{ searchValue, setSearchValue, articles, isLoading }}
+      value={{
+        searchValue,
+        setSearchValue,
+        articles,
+        isLoading,
+      }}
     >
       {children}
     </MyContext.Provider>

@@ -2,7 +2,7 @@ import React from "react";
 
 const Blog = ({ zurag, category, headline, udur }) => {
   return (
-    <div className=" h-[600px] w-[400px]">
+    <div className=" h-[600px] w-[400px] flex  items-center">
       <div className="  border border-gray-600 rounded-lg justify-center">
         {" "}
         <div className=" gap-3 m-3 flex flex-col items-start">

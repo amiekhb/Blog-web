@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Link from "next/link";
 import { MyContext } from "@/pages/provider";
 
@@ -6,6 +6,7 @@ import { MyContext } from "@/pages/provider";
 const Header = () => {
   const { setSearchValue } = useContext(MyContext);
   const handleChange = (e) => {
+    console.log(e.target.value);
     setSearchValue(e.target.value);
   };
   return (
@@ -24,7 +25,7 @@ const Header = () => {
         </li>
       </ul>
       <input
-        className=" border border-stone-500 rounded-md"
+        className="border border-gray-600 rounded-md w-60 h-10"
         type="Search"
         placeholder="Search"
         onChange={handleChange}

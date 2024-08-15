@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import { MyContext } from "./provider";
 import Blog from "@/components/All blog posts/blog";
 import Link from "next/link";
-import Header from "@/components/header/header";
 
 const BlogPage = () => {
   const { searchValue, setSearchValue, articles } = useContext(MyContext);
@@ -22,8 +21,8 @@ const BlogPage = () => {
 
   const handleChange = (text) => {
     setSearchValue(text);
-    const findArticle = articles.filter((article) =>
-      article.headline.toLowerCase().includes(text.toLowerCase())
+    const findArticle = articles.filter((data) =>
+      data.title.toLowerCase().includes(searchValue.toLowerCase())
     );
     setArticles(findArticle);
   };
@@ -34,7 +33,7 @@ const BlogPage = () => {
       <div className="text-center mx-60">
         <h2>Хайлт: {searchValue}</h2>
       </div>
-      <div className="grid grid-cols-3 w-full ">
+      <div className="grid grid-cols-3 w-full  ">
         {article.map((article) => {
           console.log("article", article);
           return (

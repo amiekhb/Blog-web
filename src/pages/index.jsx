@@ -15,8 +15,8 @@ export default function Home() {
 
   return (
     <main className="text-center">
+      <SCROLL />
       <div className="mx-60">
-        <SCROLL />
         <div className="mt-32 w-full">
           {" "}
           <p className=" text-xl font-bold mb-10 ">Trending</p>

@@ -2,8 +2,8 @@ import React from "react";
 
 const Scroll = ({ Tag, date, pic, header }) => {
   return (
-    <div className="relative">
-      <div className="bg-blend-darken bg-[rgba(0,0,0,0.3)]">
+    <div className="relative container m-auto">
+      <div className="bg-blend-darken bg-[rgba(0,0,0,0.3)] ">
         <img
           className="h-[800px] w-full object-cover rounded-xl mt-32  "
           src={pic}

@@ -4,10 +4,12 @@ import { MyContext } from "@/pages/provider";
 
 const Header = () => {
   const { setSearchValue } = useContext(MyContext);
+
   const handleChange = (e) => {
     console.log(e.target.value);
     setSearchValue(e.target.value);
   };
+
   return (
     <div className="m-10 flex justify-between mx-60">
       {" "}

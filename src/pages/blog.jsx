@@ -4,14 +4,15 @@ import Blog from "@/components/All blog posts/blog";
 import Link from "next/link";
 
 const BlogPage = () => {
-  const { searchValue, setSearchValue, articles } = useContext(MyContext);
+  const { searchValue, setSearchValue } = useContext(MyContext);
   const [article, setArticles] = useState([]);
+  const [findArticle, setFindArticle] = useState([]);
 
   const getArticleData = async () => {
     const response = await fetch("https://dev.to/api/articles?per_page=30");
     const data = await response.json();
     setArticles(data);
-    // console.log("data", data)
+    setFindArticle(data);
   };
 
   useEffect(() => {
@@ -21,7 +22,7 @@ const BlogPage = () => {
 
   const handleChange = (text) => {
     setSearchValue(text);
-    const findArticle = articles.filter((data) =>
+    const findArticle = article.filter((data) =>
       data.title.toLowerCase().includes(searchValue.toLowerCase())
     );
     setArticles(findArticle);

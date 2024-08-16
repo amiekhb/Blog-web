@@ -28,13 +28,13 @@ const BlogPage = () => {
     setArticles(findArticle);
   };
   return (
-    <div className="mt-32 text-center ">
-      <p className="text-xl font-bold mb-10">All Blog Post </p>
+    <div className="mt-32 text-center mx-60">
+      <p className="text-xl font-bold mb-14 text-start">All Blog Post </p>
 
       <div className="text-center mx-60">
         <h2>Хайлт: {searchValue}</h2>
       </div>
-      <div className="grid grid-cols-3 w-full  ">
+      <div className="grid grid-cols-3 w-full  gap-12">
         {article.map((article) => {
           console.log("article", article);
           return (

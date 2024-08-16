@@ -48,6 +48,7 @@ const MyProvider = ({ children }) => {
         setSearchValue,
         articles,
         isLoading,
+        handleLoadMore,
       }}
     >
       {children}

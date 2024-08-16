@@ -17,9 +17,9 @@ const TREND = () => {
   }, []);
 
   return (
-    <div className="mt-32 w-full">
+    <div className="mt-32 w-full h-[420px]">
       {" "}
-      <div className="flex m-auto justify-between">
+      <div className="flex m-auto gap-10">
         {articles.map((article) => {
           console.log("article", article);
           return (

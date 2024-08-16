@@ -26,7 +26,7 @@ const SCROLL = () => {
         {articles.map((article, i) => {
           console.log("article", article);
           return (
-            <Link href={`/blog/${article.id}`} className="min-w-full h-full">
+            <Link href={`/blog/${article.id}`} className="min-w-full h-full ">
               <Scroll
                 Tag={article.type_of}
                 date={article.readable_publish_date}

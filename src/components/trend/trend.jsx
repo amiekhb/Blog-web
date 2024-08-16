@@ -3,7 +3,7 @@ import React from "react";
 const Trend = ({ img, tags, title }) => {
   return (
     <div
-      className={`h-[420px] rounded-xl flex flex-col gap-5 w-[380px] bg-blend-darken bg-[rgba(0,0,0,0.5)] `}
+      className={` h-[420px] rounded-xl flex flex-col gap-5  bg-blend-darken bg-[rgba(0,0,0,0.5)] `}
       style={{
         backgroundImage: `url(${img})`,
         backgroundSize: "cover",
